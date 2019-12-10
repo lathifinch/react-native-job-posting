@@ -41,25 +41,29 @@ $ yarn start # start app
 
 ## What It Looks Like
 
-- [x] Header:
+- [x] login:
 
-![header](https://github.com/lathifinch/Job-Posting-React-Redux/blob/master/images/footer.png)
+![login](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/login.jpeg)
 
 - [x] List Jobs:
 
-![listjob](https://github.com/lathifinch/Job-Posting-React-Redux/blob/master/images/listjob.png)
+![listjob](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/listjob.jpeg)
 
 - [x] List Companies:
 
-![listcom](https://github.com/lathifinch/Job-Posting-React-Redux/blob/master/images/listcom.png)
+![listcom](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/listcom.jpeg)
 
-- [x] User Login:
+- [x] Add Job:
 
-![login](https://github.com/lathifinch/Job-Posting-React-Redux/blob/master/images/login.png)
+![addjob](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/addjob.jpeg)
 
-- [x] Footer:
+- [x] Add Company:
 
-![footer](https://github.com/lathifinch/Job-Posting-React-Redux/blob/master/images/footer.png)
+![addcom](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/addcom.jpeg)
+
+- [x] Profile:
+
+![profile](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/profile.jpeg)
 
 ## API
 
