@@ -52,51 +52,53 @@ const comReducer = (state = initState, action) => {
 			}
 
 		case 'EDIT_COM_PENDING':
-      return {
-        ...state,
-        isLoading: true
-      }
-    case 'EDIT_COM_REJECTED':
-      return {
-        ...state,
-        isLoading: false,
-        isError:true,
-        updateMessage: action.payload.message,
-      }
-    case 'EDIT_COM_FULFILLED':
-      return {
-        ...state,
-        isLoading: false,
-        isError:false,
-        updateMessage: action.payload.data.message,
-        data: state.data.map(dat =>
-        		({ ...dat, 
-            ...((dat.id === action.payload.data.result.data.id) ? 
-                action.payload.data.result.data : {})
-          	})
-        )
-      }
+			return {
+				...state,
+				isLoading: true,
+			}
+		case 'EDIT_COM_REJECTED':
+			return {
+				...state,
+				isLoading: false,
+				isError: true,
+				updateMessage: action.payload.message,
+			}
+		case 'EDIT_COM_FULFILLED':
+			return {
+				...state,
+				isLoading: false,
+				isError: false,
+				updateMessage: action.payload.data.message,
+				data: state.data.map(dat => ({
+					...dat,
+					...(dat.id === action.payload.data.result.data.id
+						? action.payload.data.result.data
+						: {}),
+				})),
+			}
 
-    case 'DEL_COM_PENDING':
-      return {
-        ...state,
-        isLoading: true,
-      }
-    case 'DEL_COM_REJECTED':
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-        deleteMessage: action.payload.message,
-      }
-    case 'DEL_COM_FULFILLED':
-      return {
-        ...state,
-        isLoading: false,
-        isError: false,
-        deleteMessage: action.payload.data.message,
-        data: state.data.filter(dat => dat.id !== action.payload.data.result.id),
-      }
+		case 'DEL_COM_PENDING':
+			return {
+				...state,
+				isLoading: true,
+			}
+		case 'DEL_COM_REJECTED':
+			return {
+				...state,
+				isLoading: false,
+				isError: true,
+				deleteMessage: action.payload.message,
+			}
+		case 'DEL_COM_FULFILLED':
+			return {
+				...state,
+				isLoading: false,
+				isError: false,
+				deleteMessage: action.payload.data.message,
+				data: state.data.filter(
+					dat => dat.id !== action.payload.data.result.id,
+				),
+			}
 
 		default:
 			return state

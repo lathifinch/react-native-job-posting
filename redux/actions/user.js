@@ -5,16 +5,16 @@ export const userLogin = (username, password) => {
 	return {
 		type: 'USER_LOGIN',
 		payload: axios({
-  		method: 'post',
-  		url: 'http://localhost:8080/login',
-  		data: qs.stringify({
-  			username,
-  			password
-  		}),
-  		headers: {
-    		'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-  		}
-		})
+			method: 'post',
+			url: 'https://kerjarek.online/login',
+			data: qs.stringify({
+				username,
+				password,
+			}),
+			headers: {
+				'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+			},
+		}),
 	}
 }
 

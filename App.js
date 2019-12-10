@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import {createAppContainer} from 'react-navigation'
-import {createStackNavigator} from 'react-navigation-stack'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 
 // redux
 import store from './redux/store'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 
 import MainScreen from './screens/MainScreen'
 import LoginScreen from './screens/LoginScreen'
@@ -22,15 +22,18 @@ export default class App extends React.Component {
   }
 }
 
-const StackNavigation = createStackNavigator({
-  LoginScreen,
-  MainScreen,
-  // ListScreen1,
-  // ListScreen2,
-},{
-  defaultNavigationOptions: {
-    header: null
+const StackNavigation = createStackNavigator(
+  {
+    LoginScreen,
+    MainScreen,
+    // ListScreen1,
+    // ListScreen2,
   },
-})
+  {
+    defaultNavigationOptions: {
+      header: null,
+    },
+  },
+)
 
 const AppContainer = createAppContainer(StackNavigation)

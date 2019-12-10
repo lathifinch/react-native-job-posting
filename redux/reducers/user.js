@@ -10,7 +10,6 @@ const initState = {
 
 const userReducer = (state = initState, action) => {
 	switch (action.type) {
-
 		// user login
 		case 'USER_LOGIN_PENDING':
 			return {
@@ -22,7 +21,10 @@ const userReducer = (state = initState, action) => {
 				...state,
 				isLoadingIn: false,
 				isErrorIn: true,
-				loginMessage: action.payload.response.data.status + ', ' + action.payload.response.data.message,
+				loginMessage:
+					action.payload.response.data.status +
+					', ' +
+					action.payload.response.data.message,
 			}
 		case 'USER_LOGIN_FULFILLED':
 			return {
@@ -31,7 +33,10 @@ const userReducer = (state = initState, action) => {
 				isErrorIn: false,
 				loginMessage: action.payload.data.message,
 				token: action.payload.data.result.authorization,
-				username: action.payload.data.message.substring(9, action.payload.data.message.length),
+				username: action.payload.data.message.substring(
+					9,
+					action.payload.data.message.length,
+				),
 			}
 
 		// user logout

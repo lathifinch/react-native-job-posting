@@ -2,24 +2,28 @@ import React from 'react'
 import { Text, StyleSheet, View, Button, ScrollView, Alert } from 'react-native'
 
 import t from 'tcomb-form-native'
+import ImageFactory from 'react-native-image-picker-form'
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage'
 
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { addCompany, editCompany } from '../../redux/actions/company'
 
+import { withNavigation } from 'react-navigation'
+
 const mapStatetoProps = state => {
-  return {
-    user: state.user,
-    company: state.company,
-  }
+	return {
+		user: state.user,
+		company: state.company,
+	}
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    addCompany: (createData, resToken) => dispatch(addCompany(createData, resToken))//,
-//    editCompany: (updateData, comId, resToken) => dispatch(editCompany(updateData, comId, resToken))
-  }
+	return {
+		addCompany: (createData, resToken) =>
+			dispatch(addCompany(createData, resToken)), //,
+		//    editCompany: (updateData, comId, resToken) => dispatch(editCompany(updateData, comId, resToken))
+	}
 }
 
 const Form = t.form.Form
@@ -32,22 +36,28 @@ const Company = t.struct({
 })
 
 const options = {
-	fields:{
-		name:{
-			label:"Company's Name",
+	fields: {
+		name: {
+			label: "Company's Name",
 			// error:'Required'
 		},
-		location:{
+		location: {
 			// error:'Required'
 		},
-		logo:{
+		logo: {
+			config: {
+				title: 'Select image',
+				options: ['Open camera', 'Select from gallery', 'Cancel'],
+			},
+			error: 'No Image Provided',
+			factory: ImageFactory,
 			// error:'Required'
 		},
-		description:{
-			label:"Company's Description",
+		description: {
+			label: "Company's Description",
 			// error:'Required'
-		}
-	}
+		},
+	},
 }
 
 // const formStyles = {
@@ -69,8 +79,8 @@ const options = {
 // }
 
 class AddCompanyTab extends React.Component {
-	constructor(){
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			name: null,
 			location: null,
@@ -78,50 +88,57 @@ class AddCompanyTab extends React.Component {
 			description: null,
 		}
 	}
-	handleSubmit(){
+
+	// componentWillMount() {
+	// 	const { whereToGo } = this.props.screenProps
+	// 	this.props.navigation.navigate(whereToGo)
+	// }
+
+	handleSubmit() {
 		const value = this._form.getValue() // use that ref to get the form value
 		console.log('value: ', value)
 		const createData = {}
-		if (value!==null){
+		if (value !== null) {
 			createData['name'] = value.name
-      createData['description'] = value.description
-      createData['logo'] = value.logo
-      createData['location'] = value.location
-      console.log(createData)
-      this.getData('token')
-			.then(res=>{
-				this.props.addCompany(createData, res)
-				Alert.alert('Success create company')
-				this.setState({
-					name: null,
-					location: null,
-					logo: null,
-					description: null,
-				},
-					console.log('reset value')
-				)
-			})
-			.catch(err=>{
-				console.log(err)
-			})
+			createData['description'] = value.description
+			createData['logo'] = value.logo
+			createData['location'] = value.location
+			console.log(createData)
+			this.getData('token')
+				.then(res => {
+					this.props.addCompany(createData, res)
+					Alert.alert('Success create company')
+					this.setState(
+						{
+							name: null,
+							location: null,
+							logo: null,
+							description: null,
+						},
+						console.log('reset value'),
+					)
+				})
+				.catch(err => {
+					console.log(err)
+				})
 		}
 	}
-	getData = async (key) => {
-  	try {
-    	const value = await AsyncStorage.getItem(key)
-    	if(value !== null) {
-    		console.log(value)
-      	return value // value previously stored
-    	}
-  	} catch(e) {
-    	console.log('cannot get data from async-storage') // error reading value
-  	}
+	getData = async key => {
+		try {
+			const value = await AsyncStorage.getItem(key)
+			if (value !== null) {
+				console.log(value)
+				return value // value previously stored
+			}
+		} catch (e) {
+			console.log('cannot get data from async-storage') // error reading value
+		}
 	}
 	render() {
 		return (
-			<ScrollView style={styles.container}>
+			<ScrollView contentContainerStyle={styles.container}>
 				<Form
-					ref={c => this._form = c} // assign a ref
+					ref={c => (this._form = c)} // assign a ref
 					type={Company}
 					options={options}
 					value={this.state}
@@ -129,7 +146,7 @@ class AddCompanyTab extends React.Component {
 				/>
 				<Button
 					color={'#097392'}
-					title='Submit'
+					title="Submit"
 					onPress={this.handleSubmit.bind(this)}
 				/>
 			</ScrollView>
@@ -137,13 +154,17 @@ class AddCompanyTab extends React.Component {
 	}
 }
 
-export default connect(mapStatetoProps, mapDispatchToProps)(AddCompanyTab);
+export default connect(
+	mapStatetoProps,
+	mapDispatchToProps,
+)(AddCompanyTab)
 
 const styles = StyleSheet.create({
-	container:{
+	container: {
 		// justifyContent:'center',
-		marginTop:30,
-		padding:20,
-		backgroundColor:'white',
-	}
+		marginTop: 30,
+		padding: 20,
+		paddingBottom: 60,
+		backgroundColor: 'white',
+	},
 })
