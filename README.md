@@ -47,15 +47,15 @@ $ yarn start # start app
 
 - [x] List Jobs:
 
-![listjob](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/listjob.jpeg)
+![listjob](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/joblist.jpeg)
 
 - [x] List Companies:
 
-![listcom](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/listcom.jpeg)
+![listcom](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/comlist.jpeg)
 
 - [x] Add Job:
 
-![addjob](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/addjob.jpeg)
+![addjob](https://github.com/lathifinch/react-native-job-posting/blob/master/readme_images/adddjob.jpeg)
 
 - [x] Add Company:
 
