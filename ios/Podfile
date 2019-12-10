@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'todolist' do
-  # Pods for todolist
+target 'kerjarek' do
+  # Pods for kerjarek
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -40,7 +40,8 @@ target 'todolist' do
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
 
-  target 'todolistTests' do
+
+  target 'kerjarekTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -48,10 +49,10 @@ target 'todolist' do
   use_native_modules!
 end
 
-target 'todolist-tvOS' do
-  # Pods for todolist-tvOS
+target 'kerjarek-tvOS' do
+  # Pods for kerjarek-tvOS
 
-  target 'todolist-tvOSTests' do
+  target 'kerjarek-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

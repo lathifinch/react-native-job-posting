@@ -104,6 +104,7 @@ class AddCompanyTab extends React.Component {
 			createData['logo'] = value.logo
 			createData['location'] = value.location
 			console.log(createData)
+			console.log(value.logo)
 			this.getData('token')
 				.then(res => {
 					this.props.addCompany(createData, res)
